@@ -1,0 +1,138 @@
+<odoo>
+	<data>
+		<!-- explicit list view definition -->
+		<record model="ir.ui.view" id="tareas.list">
+			<field name="name">Tareas list</field>
+			<field name="model">tareas.tareas</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="descripcion"/>
+					<field name="horas"/>
+					<field name="fecha_creacion"/>
+					<field name="fecha_inicio"/>
+					<field name="fecha_fin"/>
+					<field name="pausada"/>
+					<field name="sprint_id"/>
+					<field name="tecnologias_ids"/>
+				</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="tareas.form">
+			<field name="name">Tareas Form</field>
+			<field name="model">tareas.tareas</field>
+			<field name="arch" type="xml">
+				<form>
+				<group>
+					<field name="name"/>
+					<field name="descripcion"/>
+					<field name="horas"/>
+					<field name="fecha_creacion"/>
+					<field name="fecha_inicio"/>
+					<field name="fecha_fin"/>
+					<field name="pausada"/>
+					<field name="sprint_id"/>
+					<field name="tecnologias_ids"/>
+				</group>
+				</form>
+			</field>
+		</record>
+		
+		<!-- Vista para Sprint -->
+        <record model="ir.ui.view" id="tareas.list_sprint">
+            <field name="name">Sprint list</field>
+            <field name="model">tareas.sprint</field>
+            <field name="arch" type="xml">
+
+					<tree>
+						<field name="name"/>
+						<field name="descripcion"/>
+						<field name="fecha_creacion"/>
+						<field name="fecha_fin"/>
+					</tree>
+            </field>
+        </record>
+
+		<record model="ir.ui.view" id="tareas.form_sprint">
+            <field name="name">Sprint form</field>
+            <field name="model">tareas.sprint</field>
+            <field name="arch" type="xml">
+				<form>
+					<group>
+						<field name="name"/>
+						<field name="descripcion"/>
+						<field name="fecha_creacion"/>
+						<field name="fecha_fin"/>
+					</group>
+				</form>
+            </field>
+        </record>
+		<!-- Vista para Tecnologias -->
+		<record model="ir.ui.view" id="tareas.list_tecnologias">
+			<field name="name">Tecnologías list</field>
+			<field name="model">tareas.tecnologias</field>
+			<field name="arch" type="xml">
+					<tree>
+						<field name="name"/>
+						<field name="foto" widget="image" options='{"max_width": 200, "max_height": 200}'/>
+					</tree>
+			</field>
+		</record>
+
+		<record model="ir.ui.view" id="tareas.form_tecnologias">
+			<field name="name">Tecnologías Form</field>
+			<field name="model">tareas.tecnologias</field>
+			<field name="arch" type="xml">
+					<form>
+					<group>
+						<field name="name"/>
+						<field name="foto" widget="image" options='{"max_width": 200, "max_height": 200}'/>
+					</group>
+					</form>
+			</field>
+		</record>
+
+		
+		<!-- actions opening views on models -->
+		<record model="ir.actions.act_window" id="tareas.action_window">
+			<field name="name">Tareas</field>
+			<field name="res_model">tareas.tareas</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+		
+		<!-- Acción para abrir la vista de Sprint -->
+        <record model="ir.actions.act_window" id="tareas.action_windows_sprint">
+            <field name="name">Sprint</field>
+            <field name="res_model">tareas.sprint</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+		
+		<!-- Acción para abrir la vista de Tecnologias -->
+        <record model="ir.actions.act_window" id="tareas.action_windows_tecnologias">
+			<field name="name">Tecnologías</field>
+			<field name="res_model">tareas.tecnologias</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+
+		<!-- Top menu item -->
+		<menuitem name="Tareas" id="tareas.menu_root"/>
+		
+
+		<!-- menu categories -->
+		<menuitem name="Tareas" id="tareas.menu_1" parent="tareas.menu_root"/>
+		<menuitem name="Sprint" id="tareas.menu_2" parent="tareas.menu_root"/>
+		<menuitem name="Tecnologías" id="tareas.menu_3" parent="tareas.menu_root"/>		
+
+		<!-- actions -->
+		<menuitem name="SubTareas" id="tareas.menu_1_list" parent="tareas.menu_1"
+				  action="tareas.action_window"/>
+        <menuitem name="subSprint" id="tareas.menu_2_list" parent="tareas.menu_2"
+                  action="tareas.action_windows_sprint"/>
+		<menuitem name="subTecnologias" id="tareas.menu_3_list" parent="tareas.menu_3"
+				  action="tareas.action_windows_tecnologias"/>
+	</data>
+</odoo>
+
+
